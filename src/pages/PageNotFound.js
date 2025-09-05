@@ -1,6 +1,8 @@
 import pageNotFound from "../assets/pagenotfound.png";
+import { useTitle } from "../hooks/useTitle";
 
 export const PageNotFound = () => {
+  useTitle("Page not found!");
   return (
     <main>
       <section className="flex flex-col justify-center px-2">

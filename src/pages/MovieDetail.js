@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import movieImage from "../assets/leon.jpg";
+import { useTitle } from "../hooks/useTitle";
 
 export const MovieDetail = () => {
   const params = useParams();
@@ -17,7 +18,8 @@ export const MovieDetail = () => {
       setMovie(json);
     }
     fetchMovie();
-  }, []);
+  }, [params.id]);
+  useTitle(movie.title);
 
   return (
     <main>

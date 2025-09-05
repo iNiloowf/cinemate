@@ -1,26 +1,33 @@
 import { Link } from "react-router-dom";
 import movieImg from "../assets/leon.jpg";
+
 export const Card = ({ movie }) => {
   const { id, original_title, overview, poster_path } = movie;
   const image = poster_path
     ? `https://image.tmdb.org/t/p/w500${poster_path}`
     : movieImg;
+
+  const shortOverview =
+    overview.length > 180 ? overview.substring(0, 180) + "..." : overview;
+
   return (
-    <div>
-      <div className=" m-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <div className="m-3 w-72 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+      <Link to={`/movie/${id}`}>
+        <img
+          className="rounded-t-lg h-96 w-full object-cover"
+          src={image}
+          alt={original_title}
+        />
+      </Link>
+      <div className="p-4 flex flex-col h-48">
         <Link to={`/movie/${id}`}>
-          <img className="rounded-t-lg" src={image} alt="" />
+          <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {original_title}
+          </h5>
         </Link>
-        <div className="p-5">
-          <Link to={`/movie/${id}`}>
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {original_title}
-            </h5>
-          </Link>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {overview}
-          </p>
-        </div>
+        <p className="text-sm font-normal text-gray-700 dark:text-gray-400 mt-2 flex-1 overflow-hidden text-left">
+          {shortOverview}
+        </p>
       </div>
     </div>
   );
