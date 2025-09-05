@@ -21,7 +21,6 @@ export const Header = () => {
   return (
     <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-4">
-        {/* لوگو */}
         <NavLink
           to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse flex-shrink-0"
@@ -32,7 +31,6 @@ export const Header = () => {
           </span>
         </NavLink>
 
-        {/* منو و سرچ دسکتاپ */}
         <div className="hidden md:flex flex-1 items-center justify-center">
           <ul className="flex space-x-8 font-medium">
             <li>
@@ -71,7 +69,6 @@ export const Header = () => {
           </ul>
         </div>
 
-        {/* فرم سرچ دسکتاپ */}
         <form
           onSubmit={handleSubmit}
           className="hidden md:block flex-shrink-0 relative w-64"
@@ -100,7 +97,6 @@ export const Header = () => {
           </div>
         </form>
 
-        {/* موبایل */}
         <div className="flex md:hidden items-center">
           <form onSubmit={handleSubmit} className="relative w-full mr-2">
             <input
@@ -148,7 +144,6 @@ export const Header = () => {
           </button>
         </div>
 
-        {/* منوی موبایل */}
         <div className={`${hidden ? "hidden" : "block"} w-full md:hidden mt-2`}>
           <ul className="flex flex-col space-y-2 font-medium bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
             <li>
