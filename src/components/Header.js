@@ -75,9 +75,8 @@ export const Header = () => {
                 </svg>
                 <span className="sr-only">Search icon</span>
               </div>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <input
-                  onSubmit={handleSubmit}
                   type="text"
                   id="search-navbar"
                   name="search"

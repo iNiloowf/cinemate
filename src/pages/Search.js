@@ -4,8 +4,12 @@ import { useFetch } from "../hooks/useFetch";
 
 export const Search = ({ apiPath }) => {
   const [searchParams] = useSearchParams();
-  const queryTerms = searchParams.get("query");
+  const queryTerms =
+    searchParams.get("query") || searchParams.get("search") || "";
   const { data: movies = [] } = useFetch(apiPath, queryTerms);
+  console.log("queryTerms:", queryTerms);
+  console.log("movies:", movies);
+
   return (
     <main>
       <section className="max-w-7xl mx-auto py-7">

@@ -8,7 +8,6 @@ function App() {
       <center>
         <Header />
         <AllRoutes />
-        <h3>Hello world!</h3>
         <Footer />
       </center>
     </div>
