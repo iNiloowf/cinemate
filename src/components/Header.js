@@ -26,7 +26,7 @@ export const Header = () => {
           className="flex items-center space-x-3 rtl:space-x-reverse flex-shrink-0"
         >
           <img src={Logo} className="h-8" alt="Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-2xl font-semibold dark:text-white">
             Cinemate
           </span>
         </NavLink>
@@ -85,7 +85,6 @@ export const Header = () => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 strokeLinecap="round"
@@ -97,31 +96,7 @@ export const Header = () => {
           </div>
         </form>
 
-        <div className="flex md:hidden items-center">
-          <form onSubmit={handleSubmit} className="relative w-full mr-2">
-            <input
-              type="text"
-              name="search"
-              className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search..."
-            />
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-4.35-4.35m0 0A7 7 0 1110 3a7 7 0 016.65 10.65z"
-                />
-              </svg>
-            </div>
-          </form>
+        <div className="flex md:hidden items-center ml-auto">
           <button
             onClick={() => setHidden(!hidden)}
             type="button"
@@ -132,7 +107,6 @@ export const Header = () => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 strokeLinecap="round"
@@ -144,8 +118,10 @@ export const Header = () => {
           </button>
         </div>
 
-        <div className={`${hidden ? "hidden" : "block"} w-full md:hidden mt-2`}>
-          <ul className="flex flex-col space-y-2 font-medium bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+        <div
+          className={`${hidden ? "hidden" : "flex flex-col w-full mt-4 md:hidden bg-gray-50 dark:bg-gray-800 p-4 rounded-lg"}`}
+        >
+          <ul className="flex flex-col space-y-2 font-medium w-full">
             <li>
               <NavLink
                 to="/"
@@ -179,6 +155,29 @@ export const Header = () => {
                 Up Coming
               </NavLink>
             </li>
+            <form onSubmit={handleSubmit} className="w-full mt-2">
+              <input
+                type="text"
+                name="search"
+                placeholder="Search..."
+                className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-4.35-4.35m0 0A7 7 0 1110 3a7 7 0 016.65 10.65z"
+                  />
+                </svg>
+              </div>
+            </form>
           </ul>
         </div>
       </div>
