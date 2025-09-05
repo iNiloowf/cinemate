@@ -36,9 +36,6 @@ export const Header = () => {
             <button
               onClick={() => setHidden(!hidden)}
               type="button"
-              data-collapse-toggle="navbar-search"
-              aria-controls="navbar-search"
-              aria-expanded="false"
               className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
             >
               <svg
@@ -91,8 +88,9 @@ export const Header = () => {
           </div>
 
           <div
-            className={`${hidden ? "hidden" : ""} items-center justify-between w-full md:flex md:w-auto md:order-1`}
-            id="navbar-search"
+            className={`${
+              hidden ? "hidden" : "block"
+            } w-full md:flex md:items-center md:w-auto md:order-1 bg-white dark:bg-gray-900`}
           >
             <div className="relative mt-3 md:hidden">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
