@@ -9,6 +9,7 @@ export const MovieDetail = () => {
   const image = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : movieImage;
+
   useEffect(() => {
     async function fetchMovie() {
       const response = await fetch(
@@ -19,82 +20,91 @@ export const MovieDetail = () => {
     }
     fetchMovie();
   }, [params.id]);
+
   useTitle(movie.title);
 
   return (
-    <main>
-      <section className="flex justify-around items-start py-5 gap-5">
-        <div className="max-w-sm">
-          <img className="rounded" src={image} alt={movie.title}></img>
+    <>
+      <section className="flex flex-col md:flex-row justify-center md:justify-start items-start gap-6 max-w-6xl mx-auto py-8 px-4">
+        <div className="flex-shrink-0 w-full md:w-1/3 rounded-lg overflow-hidden shadow-xl">
+          <img
+            className="w-full h-full object-cover"
+            src={image}
+            alt={movie.title}
+          />
         </div>
-        <div className="max-w-2xl text-grey-700 text-lg">
-          <h1 className="text-4xl font-bold my-3 text-left">{movie.title}</h1>
-          <p className="my-4 text-left text-[15px]">{movie.overview}</p>
-          {movie.genres ? (
-            <p className="my-7 flex flex-wrap gap-2">
-              {movie.genres.map((genre) => (
-                <span
-                  key={genre.id}
-                  className="mr-2 border border-grey-200 rounded p-2 "
-                >
-                  {genre.name}
-                </span>
-              ))}
+
+        <div className="w-full md:w-2/3 flex flex-col gap-4">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col gap-4">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white">
+              {movie.title}
+            </h1>
+            <p className="text-sm md:text-base text-gray-700 dark:text-gray-300">
+              {movie.overview}
             </p>
-          ) : (
-            ""
-          )}
-          <div className="flex items-center">
-            <div className="flex items-center">
-              <svg
-                className="w-4 h-4 text-yellow-300 me-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <p className="ms-2 text-sm font-bold text-gray-900 dark:text-black flex items-center mt-0">
-                {movie.vote_average ? movie.vote_average : "N/A"}
-              </p>
-              <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-              <span className="text-sm font-medium text-gray-900  dark:text-black">
-                {movie.vote_count ? movie.vote_count : 0} reviews
-              </span>
+
+            {movie.genres && (
+              <div className="flex flex-wrap gap-2">
+                {movie.genres.map((genre) => (
+                  <span
+                    key={genre.id}
+                    className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-full text-xs md:text-sm bg-gray-100 dark:bg-gray-700"
+                  >
+                    {genre.name}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div className="flex items-center gap-4 text-sm md:text-base">
+              <div className="flex items-center gap-1">
+                <svg
+                  className="w-4 h-4 text-yellow-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 22 20"
+                >
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                </svg>
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {movie.vote_average || "N/A"}
+                </span>
+                <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                <span className="text-gray-700 dark:text-gray-300">
+                  {movie.vote_count || 0} reviews
+                </span>
+              </div>
             </div>
           </div>
-          <div>
-            <p className="my-4 text-left text-sm">
-              <span className="mr-2 font-bold ">Run time:</span>
-              <span>{movie.runtime} min.</span>
+          <div className="bg-blue-700 dark:bg-gray-800 rounded-xl shadow-inner p-4 grid grid-cols-1 gap-1 text-xs text-white">
+            <p className="text-sm">
+              <span className="font-semibold">Run time:</span> {movie.runtime}{" "}
+              min
             </p>
-            <p className="my-4 text-left text-sm">
-              <span className="mr-2 font-bold ">Budget:</span>
-              <span>{movie.budget} </span>
+            <p className="text-sm">
+              <span className="font-semibold">Budget:</span> ${movie.budget}
             </p>
-            <p className="my-4 text-left text-sm">
-              <span className="mr-2 font-bold ">Revenue:</span>
-              <span>{movie.revenue} </span>
+            <p className="text-sm">
+              <span className="font-semibold">Revenue:</span> ${movie.revenue}
             </p>
-            <p className="my-4 text-left text-sm">
-              <span className="mr-2 font-bold ">Release Date:</span>
-              <span>{movie.release_date}</span>
+            <p className="text-sm">
+              <span className="font-semibold">Release Date:</span>{" "}
+              {movie.release_date}
             </p>
-            <p className="my-4 text-left text-sm">
-              <span className="mr-2 font-bold ">IMDB code:</span>
+            <p className="text-sm">
+              <span className="font-semibold">IMDB:</span>{" "}
               <a
                 href={`https://www.imdb.com/title/${movie.imdb_id}`}
                 target="_blank"
                 rel="noreferrer"
+                className="underline text-white"
               >
-                {" "}
                 {movie.imdb_id}
               </a>
             </p>
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 };
